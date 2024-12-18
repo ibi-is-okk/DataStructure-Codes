@@ -11,16 +11,16 @@ public:
 		for (int i = 0; i < size; i++)
 			h_Arr[i] = arr[i];
 	}
-//build-heap function is used to make max-heap from complete binary tree
-//using heapify function.
+	//build-heap function is used to make max-heap from complete binary tree
+	//using heapify function.
 	void buildheap()
 	{
 		for (int i = (size - 2) / 2; i >= 0; i--)		//LAST non leaf element
 		{
-			heapify(i);
+			heapify(i);			// heapifys frm eachhh elemnet (keeps moving up the tree as the heapify is DOWN ) heapify wld fix lower table this for loop takes it up
 		}
 	}
-	void heapify(int index)								//does the swapping
+	void heapify(int index)								//does the swapping  DOWN WARD
 	{
 		int largest = index;
 		int left = 2 * index + 1;
@@ -38,10 +38,10 @@ public:
 	}
 	int extMax()
 	{
-		swap(h_Arr[size-1],h_Arr[0]);
+		swap(h_Arr[size - 1], h_Arr[0]);
 		size--;
 		heapify(0);
-		return h_Arr[size+1];		// as max wld now be at size+1 after the swap
+		return h_Arr[size + 1];		// as max wld now be at size+1 after the swap
 	}
 	void print()
 	{
@@ -49,14 +49,14 @@ public:
 			cout << h_Arr[i] << " ";
 		cout << endl;
 	}
-	void heapSort()
+	void heapSort()			// no longer max heap			extract max then put at end
 	{
 		int temp = size;
-		for (int i = size-1; i>=0; i--)
+		for (int i = size - 1; i >= 0; i--)
 		{
 			swap(h_Arr[0], h_Arr[i]);
-			size--;
-			heapify(0);	
+			size--;						// so as size reduced in heapify wont be able to access the LARGEST elements that after swap hv been placed at size+1
+			heapify(0);					// so that new max element comes to root
 		}
 		size = temp;
 	}
